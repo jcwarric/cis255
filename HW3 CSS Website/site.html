@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<!--
+	Examples of 20 CSS properties that are implemented by this webpage are listed below. Unless otherwise indicated, line numbers refer to my external stylesheet, "site.css". The asterisk represents elements discussed in my webpage.
+
+	1. font-family		 line 13
+	2. background-color  line 23
+	3. width			 line 24
+	4. height			 line 25
+	5. border			 line 55
+	6. border-radius     line 56
+	7. justify-content   line 58
+	8. position          line 70
+	9. * transition 	 line 81
+	10. :hover 			 line 88
+	11. overflow		 line 101
+	12. color 			 line 113
+	13. * display:grid 	 line 128
+	14. object-fit		 line 138
+	15. * filter 		 line 144
+	16. * animation-name line 157
+	17. @keyframes 		 line 164
+	18. left (position)  line 165
+	19. flex-wrap		 line 178
+	20. * media-query    line 199
+-->
+
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
+    <title>CSS website</title>
+</head>
+<body>
+	<nav>
+		<div class="row">
+			<div class="col-8">
+				<form action="https://github.com/jcwarric/cis255.git">
+					<input class="myButton" type="submit" value="Go to Github">
+				</form>
+			</div>
+			<div class="col-4">
+				<h1>My Favorite CSS Properties</h1>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row headerRow headerImage">
+		<img class="topImg" src="assets/headerIllustration.svg" alt="">
+	</div>
+
+	<div class="main-content">
+		<div class="row">
+			<div class="col-4">
+				<div class="box">
+					<h2>CIS 255</h2>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="box">
+					<h2>Homework 3</h2>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="box">
+					<h2>Anna Warrick</h2>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<p>I like CSS because it simplifies designing and formatting html objects. My favorite CSS elements are transitions, media queries, grids, filters, and animations.
+		<p>
+
+		<br>
+		<hr>
+		<br>
+		<h2>Transitions</h2>
+		<div class="row">
+			<div class="PullOutTransition">
+				<p>The transition element is fun for making content responsive and dynamic.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="PullOutTransition2">
+				<p>Transitions are great for temporarily changing the css of an element to emphaize its content.
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="PullOutTransition">
+				<p>Transitions avoid being distracting by only running when an event is triggered.</p>
+			</div>
+		</div>
+
+		<br>
+		<hr>
+		<br>
+
+		<h2>Media Queries</h2>
+		<p>Media queries are useful for ensuring a good user experience across various screen sizes and browsers. I used media queries on the transition above to ensure that the text in the circle divs could be read clearly on a phone screen. I also used a media query on the grid below to ensure that only one photograph is shown per row on smaller screens.
+		<br>
+		<br>
+		<hr>
+		<br>
+
+
+		<h2>Grids and Filters</h2>
+		<div class="grid">
+			<div class="gridImg"><img src="assets/bridge1.jpg" alt="bridge"></div>
+			<div class="gridImg span2"><img src="assets/bridge2.jpg" alt="bridge"></div>
+			<div class="gridImg"><img src="assets/bridge3.jpg" alt="bridge"></div>
+			<div class="gridImg"><img src="assets/bridge4.jpg" alt="bridge"></div>
+			<div class="gridImg"><img src="assets/bridge5.jpg" alt="bridge"></div>
+			<div class="gridImg span2"><img src="assets/bridge6.jpg" alt="bridge"></div>
+			<div class="gridImg"><img src="assets/bridge7.jpg" alt="bridge"></div>
+		</div>
+		<p>I really like the grid element because of its built in flexibility and responsiveness. If you re-size the window, the images change rows and sizes without a lot of extra code. Filters are useful for temporarily modifying photos to fit a specific color scheme without impacting the original image (photos courtesy of the royalty-free image site Pexels.com).
+		</p>
+		<br>
+		<hr>
+		<br>
+
+
+		<h2>Animations</h2>
+		<div class="row">
+			<div class="animatedSquare">
+			</div>
+		</div>
+		<p>Animations are fun because unlike transitions, they can run continually without any user prompting. I also like that I can specify multiple frames within a single animation block. The example above has 3 frames: purple on the left, grey in the center, and blue on the right. 
+		</p>
+		<br>
+		<hr>
+		<br>
+
+		<h2>Dev Tools Example</h2>
+		<img src="assets/screenshot.PNG" width="800px">
+		<p> (I have two titles because I tried to get the header image title to float over the header image, but had trouble getting it to look right, so I put the title in the SVG image instead and created a new one in the top bar to change to purple).
+	</div>
+
+	<div class="row footer">
+	</div>
+
+
+</body>
+</html>

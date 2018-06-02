@@ -1,0 +1,225 @@
+/*
+ purple:      #96858F
+ blue:        #6D7993
+ grey:        #9099A2
+ light grey:  #D5D5D5;
+*/
+
+*{
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+	background-color:#FFFFFF;
+	font-family:'Quicksand', Arial, sans-serif;
+
+	/*border:1px solid black;*/
+}
+
+p{
+	font-size:16px;
+}
+
+.navbar {
+	background-color:#FFFFFF;
+	width:100%;
+	height:60px;
+	padding:5px;
+}
+
+
+.headerImage {
+	width: 100%;
+	height: auto;
+}
+
+.topImg{
+	width:100%;
+	height:100%;
+}
+
+.main-content{
+	margin-left:50px;
+	margin-right:50px;
+}
+div {
+	display:block;
+}
+
+
+.box {
+	min-width:150px;
+	min-height:2em;
+	background-color: white;
+	padding:10px 20px;
+	margin:10px;
+	border:2px dotted #96858F;
+	border-radius:15px;
+	font-size:120%;
+	justify-content: center;
+
+
+}
+
+.box h2 {
+	/*background-color: #96858F;*/
+	text-align:center;
+	text-justify:center;
+}
+
+.PullOutTransition2{
+	position:relative;
+	margin:0px;
+	padding:10px;
+	width:50px;
+	height:50px;
+	left:90%;
+	border-radius:30px;
+	font-size:2em;
+	overflow:hidden;
+	background-color:#D5D5D5;
+	color:#D5D5D5;
+	transition:width 3s, left 3s, color 3s;	
+}
+
+.PullOutTransition2 p{
+	background-color:#D5D5D5;
+}
+
+.PullOutTransition2:hover {
+	width:100%;
+	left:0%;
+	color:#6D7993;
+}
+
+.PullOutTransition{
+	margin:0px;
+	padding:10px;
+	width:50px;
+	height:50px;
+	border-radius:30px;
+	font-size:2em;
+	overflow:hidden;
+	background-color:#6D7993;
+	color:#6D7993;
+	transition:width 3s, color 3s;
+}
+
+.PullOutTransition p{
+	background-color:#6D7993;
+}
+
+.PullOutTransition:hover {
+	width:100%;
+	color:white;
+}
+
+.myButton {
+	background-color: #96858F;
+	padding:10px 20px ;
+	margin: 5px;
+	color:white;
+	border:none;
+	border-radius:10px;
+	text-align:center;
+}
+
+
+.grid{
+	display:grid;
+  	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  	grid-auto-flow:dense;
+  	grid-gap: 20px;
+  	margin:10px 50px;
+}
+
+.gridImg{
+	
+	/*border:1px solid black;*/
+	object-fit: cover;
+}
+
+.gridImg img {
+	width:100%;
+	height:100%;
+	filter: grayscale(100%);
+}
+
+.span2 {
+	grid-column-end: span 2;
+}
+
+
+.animatedSquare{
+	width:100px;
+	height:100px;
+	position:relative;
+	background-color:#96858F;
+	animation-name:square;
+	animation-duration:4s;
+	animation-iteration-count:infinite;
+	animation-direction:alternate;
+	animation-timing-function:ease-in-out;
+}
+
+@keyframes square{
+	0% {left:0px;}
+	50% {left:45%; background-color: #9099A2;}
+	100% {left:90%; background-color:#6D7993;}
+}
+
+.footer
+{
+	height:30px;
+	background-color:#96858F;
+}
+.row{
+	width:100%;
+	display:flex;
+	flex-wrap:wrap;
+
+}
+
+
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+
+ /* For mobile phones: */
+@media only screen and (max-width: 768px) {
+   
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .PullOutTransition {
+
+		width:50px;
+		height:100px;
+
+	}
+
+	.PullOutTransition2{
+		width:50px;
+		height:100px;
+	}
+
+	.span2{
+		grid-column-end: span 1;
+	}
+
+	.grid{
+		margin:0px 0px;
+	}
+
+}
