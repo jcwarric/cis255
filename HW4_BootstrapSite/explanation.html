@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Midland Area Catholic Community</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="main.css">
+	</head>
+
+	<body style="background-color:#E5E5E5;">
+	<!--Navigation bar -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="main.html">
+						<h3>MACC</h3>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="nav-item"><a href="main.html">Home</a></li>
+						<li class="nav-item"><a href="about.html">About</a></li>
+						<li class="nav-item"><a href="events.html">Events</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Partnership Advocacy Team">PAT
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="PATabout.html">About</a>
+			          <div class="dropdown-divider"></div>
+			          <a class="dropdown-item" href="PATpeople.html">People</a>
+			          <div class="dropdown-divider"></div>
+			          <a class="dropdown-item" href="PATminutes.html">Meeting Minutes</a>
+			        </div>
+						</li>
+						<li class="nav-item"><a href="contact.html">Contact</a></li>
+						<li class="nav-item active"><a href="explanation.html">Explanation</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container page-wrapper">
+			<div class="row page-wrapper-header">
+				<h2 align="center">Explanations</h2>
+			</div>
+			<div class="row explanationRow">
+				<h3>Navbar</h3>
+				<p>I used the same navbar on each page. I formatted it with several other bootstrap classes including <code>navbar-fixed-top</code> to keep the navigation bar at the top of the page even when the user scrolls, <code>dropdown-menu</code> and <code>dropdown-item</code> to format the PAT navigation link so that it has sub-links, <code> navbar-collapse</code> to make the navigation bar collapse when viewed with a small screen, among others.</p>
+
+				<h3>Carousel</h3>
+				<p>I used the carousel class on the home page to create an image gallery header for the header. I really like the aesthetic of having multiple transitioned images because it's more interesting than a static image and can be used to highlight the many aspects of the community that my website is meant to describe (mass celebrations, service and mission events, etc). I used the <code>carousel slide</code>, <code>carousel-inner</code>, and <code>item</code> classes to create the individual elements of the carousel. The <code>img-responsive</code>class was also useful in making sure that each image fit the carousel slides</p>
+
+				<h3>Cards</h3>
+				<p>I used cards on the homepage to display each of the four parishes that are part of the Midland Area Catholic Community group. To format the cards, I used the <code>card</code>, <code>card-body</code>, and <code>card-title</code> classes.</p>
+
+				<h3>Collapse</h3>
+				<p>I used an accordion with cards on my Meeting Minutes page to allow the user to toggle a particular meetings' notes by date. It currently looks underwhelming, but I think that the aesthetic of using a collapsable set of cards would improve with more than one entry. I chose to use an accordion because the meeting notes are about a page long each. Since the site is meant to act as a repository for all future meeting notes, displaying the full entries would make the page too long cumbersome to scroll through. Some classes that I used to format the accordion are: <code> accordion</code>,<code>card</code>, <code>collapse</code>, <code>card-body</code>, and <code>btn-link</code>.</p>
+
+				<h3>Forms</h3>
+				<p>I used a form on the Contact page to allow the site users to submit a message (in theory - I didn't add any code to handle the actual data entry actions). Classes that I used to implement this form include: <code>form-group</code>, <code>form-check-input</code>, <code>form-check-label</code>, and <code>form-control</code>. </p>
+
+			</div>
+
+			<hr>
+			<div class="row explanationRow">
+				<h3>Discussion</h3>
+				<p>Bootstrap and WordPress are both great tools for web development. Both have great documentation and are popular on user forums like stack-overflow, which are great for troubleshooting. 
+				</p>
+				<p>
+				Personally, I like Bootstrap a lot more than WordPress because I haven’t put much time into learning about how to use WordPress themes effectively. While working on homework 1, I often struggled to get items to display on my pages because I hadn’t understood that WordPress themes enforce their structures. While I always sketch out a design of my website before coding it, I usually change elements while writing the code. This was difficult for me to do in WordPress because I was tied-in to the theme that I selected at the beginning. As a programmer, I also feel a lot prouder of a website when I have coded it myself, rather than following a pre-coded template.
+				</p>
+				<p>
+				However, overall WordPress would be a better tool for my website because I don’t want to be involved in maintaining it/updating content long-term and instead would be handing it to the MACC team to manage, none of whom know how to code. The user-friendly nature of WordPress would allow a member of the team to easily update content on his/her own. Using a WordPress theme is also beneficial because I want my website to look professional. WordPress has a wide variety of professional-looking themes to choose from that are completely responsive without making me set breakpoints using media-queries or bootstrap’s grid classes.
+				</p>
+				<p>
+				WordPress also has great widgets. I really liked the Google Calendar on my WordPress site better than my Bootstrap site because I used a widget for it. Not only did it display more nicely, it also automatically synched with an “upcoming events” section to display events from the associated calendar, an effect that I could only do manually (or with a lot of effort) in Bootstrap.
+				</p>
+				<p>
+				I recently found an article on creating a WordPress theme using Bootstrap that I wanted to try out. While I’m still trying to learn how to create aesthetically appealing web designs, the ability to make a theme in bootstrap and then give it to a client in a WordPress-friendly format would be highly useful and practical.   
+
+				</p>
+			</div>
+		</div>
+
+	</body>
+</html>
