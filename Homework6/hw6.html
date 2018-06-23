@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  
+  <script>
+    $("document").ready(function(){
+      var rawFile = new XMLHttpRequest();
+      rawFile.open("GET", "junk.txt", false);
+      rawFile.onreadystatechange = function ()
+      {
+          if(rawFile.readyState === 4)
+          {
+              if(rawFile.status === 200 || rawFile.status == 0)
+              {
+                  rt = rawFile.responseText;
+                  var obj = JQuery.ParseJSON(rt);
+                  console.log(rt);
+              }
+          }
+      }
+      rawFile.send(null);
+    });
+  </script>
+  </head>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+
+<p id="demo">Let AJAX change this text.</p>
+
+<button type="button" onclick="loadDoc();">Change Content</button>
+<button type="button" onclick="showDoc(obj);">Change Content2</button>
+
+<script>
+rt = " ";
+function loadDoc() {
+
+}
+
+function showDoc(obj){
+  xx = "";
+    for(var i =0; i < obj.courses.length ; i++) 
+        xx = xx + obj.courses[i].prefix + " " 
+	         + obj.courses[i].courseNumber + " " 
+			 + obj.courses[i].meetingTimes[0].building + " " 
+			 + obj.courses[i].meetingTimes[0].room +" <br>";
+    document.getElementById("demo").innerHTML = xx;
+}
+</script>
+
+</body>
+</html>
