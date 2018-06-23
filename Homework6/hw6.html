@@ -3,10 +3,10 @@
 <head>
 
   <style>
-    .spanRed {
+    .ColorRed {
       color: red;
     }
-    .spanBlue{
+    .ColorBlue{
       color: blue;
     }
   </style>
@@ -91,53 +91,48 @@ function sortByRoom(obj) {
 
 function showByRoom(newArray){
 
-  // //define an object, outputLine
-  // function outputLine(prefix, courseNumber, building, room){
-  //   this.prefix = prefix,
-  //   this.courseNumber = courseNumber,
-  //   this.building = building,
-  //   this.room = room,
-  //   this.print = function(){
-  //     return this.prefix + " " + this.courseNumber + " " +
-  //       this.building + " " + this.room;
-  //   }
-  // }
+  //define an object, outputLine
+  function outputLine(prefix, courseNumber, building, room){
+    this.prefix = prefix,
+    this.courseNumber = courseNumber,
+    this.building = building,
+    this.room = room,
+    this.print = function(){
+      return this.prefix + " " + this.courseNumber + " " +
+        this.building + " " + this.room;
+    }
+  }
 
-  // var outputArr = [];
-  // for(var i = 0; i < newArray.length; i++)
-  // {
-  //   outputArr.push(new outputLine(
-  //     newArray[i].prefix,
-  //     newArray[i].courseNumber, 
-  //     newArray[i].meetingTimes[0].building,
-  //     newArray[i].meetingTimes[0].room));
-  // }
-  // console.log(outputArr);
-
-  // for(var i = 0; i < outputArr.length; i++){
-  //   $("#demo").text(outputArr[i].join(" "));
-  // }
-  // newArray = $.makeArray(array);
-  // console.log(newArray);
-
-  // $.map(newArray, function(val, i){
-  //   if(i % 2 == 0){
-  //      newArray[i].color = ""
-  //   }
-   
-  // });
-  var str = "ul";
+  var outputArr = [];
   for(var i = 0; i < newArray.length; i++)
   {
-    str = str + "<li>" + newArray[i].prefix + " " 
-      + newArray[i].courseNumber + " "
-      + newArray[i].meetingTimes[0].building + " "
-      + newArray[i].meetingTimes[0].room + "</li>";
+    outputArr.push(new outputLine(
+      newArray[i].prefix,
+      newArray[i].courseNumber, 
+      newArray[i].meetingTimes[0].building,
+      newArray[i].meetingTimes[0].room));
+  }
+  console.log(outputArr);
+
+  $.map(outputArr, function(value, i){
+    if(i % 2 == 0){
+      outputArr.colorClass = "ColorRed";
+    }
+    else{
+      outputArr.colorClass = "ColorBlue";
+    }
+  });
+
+  var str = "<ul>";
+  for(var i = 0; i < outputArr.length; i++)
+  {
+    str = str + "<li class=\"" + ouputArr[i].colorClass +
+      "\">" +  outputArr.print() + "</li>";
   }
 
   str = str + "<ul>"
   document.getElementById("demo").innerHTML = str;
-  
+  console.log(str);
 }
 
 </script>
