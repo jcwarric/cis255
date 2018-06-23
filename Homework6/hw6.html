@@ -91,46 +91,58 @@ function sortByRoom(obj) {
 
 function showByRoom(newArray){
 
+  // //define an object, outputLine
+  // function outputLine(prefix, courseNumber, building, room){
+  //   this.prefix = prefix,
+  //   this.courseNumber = courseNumber,
+  //   this.building = building,
+  //   this.room = room,
+  //   this.print = function(){
+  //     return this.prefix + " " + this.courseNumber + " " +
+  //       this.building + " " + this.room;
+  //   }
+  // }
 
-  //define an object, outputLine
-  function outputLine(prefix, courseNumber, building, room){
-    this.prefix = prefix,
-    this.courseNumber = courseNumber,
-    this.building = building,
-    this.room = room,
-    this.print = function(){
-      return this.prefix + " " + this.courseNumber + " " +
-        this.building + " " + this.room;
-    }
-  }
+  // var outputArr = [];
+  // for(var i = 0; i < newArray.length; i++)
+  // {
+  //   outputArr.push(new outputLine(
+  //     newArray[i].prefix,
+  //     newArray[i].courseNumber, 
+  //     newArray[i].meetingTimes[0].building,
+  //     newArray[i].meetingTimes[0].room));
+  // }
+  // console.log(outputArr);
 
-  var outputArr = [];
-  for(var i = 0; i < newArray.length; i++)
-  {
-    outputArr.push(new outputLine(
-      newArray[i].prefix,
-      newArray[i].courseNumber, 
-      newArray[i].meetingTimes[0].building,
-      newArray[i].meetingTimes[0].room));
-  }
-  console.log(outputArr);
-
+  // for(var i = 0; i < outputArr.length; i++){
+  //   $("#demo").text(outputArr[i].join(" "));
+  // }
   // newArray = $.makeArray(array);
   // console.log(newArray);
 
-  // var str = "";
-  // for(var i = 0; i < newArray.length; i++)
-  // {
-  //   str = str + newArray[i].prefix + " " 
-  //     + newArray[i].courseNumber + " "
-  //     + newArray[i].meetingTimes[0].building + " "
-  //     + newArray[i].meetingTimes[0].room + "</br>";
-  // }
-  // document.getElementById("demo").innerHTML = str;
+  // $.map(newArray, function(val, i){
+  //   if(i % 2 == 0){
+  //      newArray[i].color = ""
+  //   }
+   
+  // });
+  var str = "ul";
+  for(var i = 0; i < newArray.length; i++)
+  {
+    str = str + "<li>" + newArray[i].prefix + " " 
+      + newArray[i].courseNumber + " "
+      + newArray[i].meetingTimes[0].building + " "
+      + newArray[i].meetingTimes[0].room + "</li>";
+  }
+
+  str = str + "<ul>"
+  document.getElementById("demo").innerHTML = str;
   
 }
 
 </script>
 
+<p>Same Origin Policy</p>
+<p>A callback function is a </p>
 </body>
 </html>
