@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <style>
+    .spanRed {
+      color: red;
+    }
+    .spanBlue{
+      color: blue;
+    }
+  </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -81,18 +90,44 @@ function sortByRoom(obj) {
  showByRoom(newArray);
 }
 
-function showByRoom(array){
-  newArray = $.makeArray(array);
-  console.log(newArray);
-  var str = "";
-  for(var i = 0; i < newArray.length; i++)
-  {
-    str = str + newArray[i].prefix + " " 
-      + newArray[i].courseNumber + " "
-      + newArray[i].meetingTimes[0].building + " "
-      + newArray[i].meetingTimes[0].room + "</br>";
+function showByRoom(newArray){
+
+
+  //define an object, outputLine
+  function outputLine(prefix, courseNumber, building, room){
+    this.prefix = prefix,
+    this.courseNumber = courseNumber,
+    this.building = building,
+    this.room = room,
+    this.print = function(){
+      return this.prefix + " " + this.courseNumber + " " +
+        this.building + " " + this.room;
+    }
   }
-  document.getElementById("demo").innerHTML = str;
+
+  var outputArr = [];
+  for(var i = 0; i < array.length; i++)
+  {
+    outputArr.push(new outputLine(
+      newArray[i].prefix,
+      newArray[i].courseNumber, 
+      newArray[i].meetingTimes[0].building,
+      newArray[i].meetingTimes[0].room));
+  }
+  console.log(outputArr);
+
+  // newArray = $.makeArray(array);
+  // console.log(newArray);
+
+  // var str = "";
+  // for(var i = 0; i < newArray.length; i++)
+  // {
+  //   str = str + newArray[i].prefix + " " 
+  //     + newArray[i].courseNumber + " "
+  //     + newArray[i].meetingTimes[0].building + " "
+  //     + newArray[i].meetingTimes[0].room + "</br>";
+  // }
+  // document.getElementById("demo").innerHTML = str;
   
 }
 
