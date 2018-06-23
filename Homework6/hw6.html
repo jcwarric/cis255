@@ -16,7 +16,7 @@
               if(rawFile.status === 200 || rawFile.status == 0)
               {
                   rt = rawFile.responseText;
-                  var obj = jQuery.ParseJSON(rt);
+                  var obj = JSON.parse(rt);
                   console.log(rt);
               }
           }
