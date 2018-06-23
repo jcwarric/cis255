@@ -10,10 +10,129 @@
       color: blue;
     }
   </style>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
- 
+
+  <script>
+    $(document).ready(function(){
+      rt = " ";
+      var newArray = [];
+
+      function loadDoc() {
+        
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", "junk.txt", false);
+        rawFile.onreadystatechange = function ()
+        {
+          if(rawFile.readyState === 4)
+          {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+              rt = rawFile.responseText;
+              obj = JSON.parse(rt);
+              console.log(rt);
+            }
+          }
+        }
+          rawFile.send(null);
+      }
+      loadDoc();
+
+      function showDoc(obj){
+        xx = "";
+          for(var i =0; i < obj.courses.length ; i++) 
+              xx = xx + obj.courses[i].prefix + " " 
+                 + obj.courses[i].courseNumber + " " 
+             + obj.courses[i].meetingTimes[0].building + " " 
+             + obj.courses[i].meetingTimes[0].room +" <br>";
+          document.getElementById("demo").innerHTML = xx;
+      }
+
+      function sortByRoom(obj) {
+        console.log(obj);
+       for( var i = 0; i < obj.courses.length; i++)
+       {
+          newArray.push(obj.courses[i]);
+       }
+       console.log(newArray);
+          newArray.sort(function(a,b){
+            var room1 = a.meetingTimes[0].building + 
+              a.meetingTimes[0].room;
+            var room2 = b.meetingTimes[0].building + 
+              b.meetingTimes[0].room;
+            console.log(a);
+            console.log(b);
+
+            if(room1 < room2)
+            {
+              return -1;
+            }
+            if(room1 > room2)
+            {
+              return 1;
+            }
+              return 0;
+
+          });
+
+       console.log(newArray);
+       showByRoom(newArray);
+      }
+
+      function showByRoom(newArray){
+
+        //define an object, outputLine to add a color class to
+        function outputLine(prefix, courseNumber, building, room){
+          this.prefix = prefix,
+          this.courseNumber = courseNumber,
+          this.building = building,
+          this.room = room,
+          this.print = function(){
+            return this.prefix + " " + this.courseNumber + " " +
+              this.building + " " + this.room;
+          },
+          this.colorClass = "ColorRed";
+        }
+
+        var outputArr = [];
+        for(var i = 0; i < newArray.length; i++)
+        {
+          outputArr.push(new outputLine(
+            newArray[i].prefix,
+            newArray[i].courseNumber, 
+            newArray[i].meetingTimes[0].building,
+            newArray[i].meetingTimes[0].room));
+        }
+        console.log(outputArr);
+
+      //use map to assign a new color, blue, to the odd elements
+        $.map(outputArr, function(value, i){
+          if(i % 2 == 0){
+            outputArr[i].colorClass = "ColorBlue";
+          }
+        });
+
+        var str = "<ul>";
+        for(var i = 0; i < outputArr.length; i++)
+        {
+          str = str + "<li class=\"" + outputArr[i].colorClass +
+            "\">" +  outputArr[i].print() + "</li>";
+        }
+
+        str = str + "<ul>"
+        document.getElementById("demo").innerHTML = str;
+        console.log(str);
+      }
+
+      $("button").click(function(){
+        sortByRoom(obj);
+      })
+    });
+
+  </script>
+  
   </head>
 <body>
 
@@ -21,123 +140,11 @@
 
 <p id="demo">Let AJAX change this text.</p>
 
-<button type="button" onclick="loadDoc();">Load Doc</button>
-<button type="button" onclick="sortByRoom(obj);">Change Content</button>
+<!-- <button type="button" onclick="loadDoc();">Load Doc</button> -->
+<button type="button">Change Content</button>
 
 
-<script>
-rt = " ";
-var newArray = [];
-
-function loadDoc() {
-  
-  var rawFile = new XMLHttpRequest();
-  rawFile.open("GET", "junk.txt", false);
-  rawFile.onreadystatechange = function ()
-  {
-    if(rawFile.readyState === 4)
-    {
-      if(rawFile.status === 200 || rawFile.status == 0)
-      {
-        rt = rawFile.responseText;
-        obj = JSON.parse(rt);
-        console.log(rt);
-      }
-    }
-  }
-    rawFile.send(null);
-}
-
-function showDoc(obj){
-  xx = "";
-    for(var i =0; i < obj.courses.length ; i++) 
-        xx = xx + obj.courses[i].prefix + " " 
-           + obj.courses[i].courseNumber + " " 
-       + obj.courses[i].meetingTimes[0].building + " " 
-       + obj.courses[i].meetingTimes[0].room +" <br>";
-    document.getElementById("demo").innerHTML = xx;
-}
-
-function sortByRoom(obj) {
-  console.log(obj);
- for( var i = 0; i < obj.courses.length; i++)
- {
-    newArray.push(obj.courses[i]);
- }
- console.log(newArray);
-    newArray.sort(function(a,b){
-      var room1 = a.meetingTimes[0].building + 
-        a.meetingTimes[0].room;
-      var room2 = b.meetingTimes[0].building + 
-        b.meetingTimes[0].room;
-      console.log(a);
-      console.log(b);
-
-      if(room1 < room2)
-      {
-        return -1;
-      }
-      if(room1 > room2)
-      {
-        return 1;
-      }
-        return 0;
-
-    });
-
- console.log(newArray);
- showByRoom(newArray);
-}
-
-function showByRoom(newArray){
-
-  //define an object, outputLine
-  function outputLine(prefix, courseNumber, building, room){
-    this.prefix = prefix,
-    this.courseNumber = courseNumber,
-    this.building = building,
-    this.room = room,
-    this.print = function(){
-      return this.prefix + " " + this.courseNumber + " " +
-        this.building + " " + this.room;
-    },
-    this.colorClass = "ColorRed";
-  }
-
-  var outputArr = [];
-  for(var i = 0; i < newArray.length; i++)
-  {
-    outputArr.push(new outputLine(
-      newArray[i].prefix,
-      newArray[i].courseNumber, 
-      newArray[i].meetingTimes[0].building,
-      newArray[i].meetingTimes[0].room),
-      "ColorRed");
-  }
-  console.log(outputArr);
-
-  $.map(outputArr, function(value, i){
-    if(i % 2 == 0){
-      outputArr[i].colorClass = "ColorBlue";
-    }
-   
-  });
-
-  var str = "<ul>";
-  for(var i = 0; i < outputArr.length; i++)
-  {
-    str = str + "<li class=\"" + outputArr[i].colorClass +
-      "\">" +  outputArr[i].print() + "</li>";
-  }
-
-  str = str + "<ul>"
-  document.getElementById("demo").innerHTML = str;
-  console.log(str);
-}
-
-</script>
-
-<p>Same Origin Policy</p>
-<p>A callback function is a </p>
+<p>The same-origin policy in Javascript is a fairly good policy because it helps to prevent malicious code from running on your site. While I was working on this homework, at first I was frustrated by the error "cross-origin schemes aren't supported" when I tried to load "junk.txt" from my computer. However, it seems like a good idea for Chrome to disallow foreign code to run on my site because I wouldn't normally host my code in multiple locations.</p>
+<p>A callback function is a function thats code runs only after the current effect finishes, making them especially useful for handling transitions and animations. In this case, the use of a callback function to change the color of each line of the output wasn't entirely necessary because the text was small and changing its color didn't cause any noticeable lags. If I had wanted to put a transition or animation on each of the elements (instead of changing the color), then using a callback function would be a good way to ensure that the animations run in order. Also, the color of the lines didn't change after the ouput was displayed. If I wanted the bullet points to change color when clicked or hovered over, then a callback function would be more useful.</p>
 </body>
 </html>
