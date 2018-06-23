@@ -31,8 +31,9 @@
 
 <p id="demo">Let AJAX change this text.</p>
 
-<button type="button" onclick="loadDoc();">Change Content</button>
-<button type="button" onclick="showDoc(obj);">Change Content2</button>
+<button type="button" onclick="loadDoc();">Load Doc</button>
+<button type="button" onclick="sortByRoom(obj);">Change Content</button>
+
 
 <script>
 rt = " ";
@@ -44,11 +45,56 @@ function showDoc(obj){
   xx = "";
     for(var i =0; i < obj.courses.length ; i++) 
         xx = xx + obj.courses[i].prefix + " " 
-	         + obj.courses[i].courseNumber + " " 
-			 + obj.courses[i].meetingTimes[0].building + " " 
-			 + obj.courses[i].meetingTimes[0].room +" <br>";
+           + obj.courses[i].courseNumber + " " 
+       + obj.courses[i].meetingTimes[0].building + " " 
+       + obj.courses[i].meetingTimes[0].room +" <br>";
     document.getElementById("demo").innerHTML = xx;
 }
+
+unction sortByRoom(obj) {
+  console.log(obj);
+ for( var i = 0; i < obj.courses.length; i++)
+ {
+    newArray.push(obj.courses[i]);
+ }
+ console.log(newArray);
+    newArray.sort(function(a,b){
+      var room1 = a.meetingTimes[0].building + 
+        a.meetingTimes[0].room;
+      var room2 = b.meetingTimes[0].building + 
+        b.meetingTimes[0].room;
+      console.log(a);
+      console.log(b);
+
+      if(room1 < room2)
+      {
+        return -1;
+      }
+      if(room1 > room2)
+      {
+        return 1;
+      }
+        return 0;
+
+    });
+
+ console.log(newArray);
+ showByRoom(newArray);
+}
+
+function showByRoom(newArray){
+  var str = "";
+  for(var i = 0; i < newArray.length; i++)
+  {
+    str = str + newArray[i].prefix + " " 
+      + newArray[i].courseNumber + " "
+      + newArray[i].meetingTimes[0].building + " "
+      + newArray[i].meetingTimes[0].room + "</br>";
+  }
+  document.getElementById("demo").innerHTML = str;
+  
+}
+
 </script>
 
 </body>
