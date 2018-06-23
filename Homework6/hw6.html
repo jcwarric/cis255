@@ -81,7 +81,9 @@ function sortByRoom(obj) {
  showByRoom(newArray);
 }
 
-function showByRoom(newArray){
+function showByRoom(array){
+  newArray = $.makeArray(array);
+  console.log(newArray);
   var str = "";
   for(var i = 0; i < newArray.length; i++)
   {
