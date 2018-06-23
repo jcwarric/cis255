@@ -100,7 +100,8 @@ function showByRoom(newArray){
     this.print = function(){
       return this.prefix + " " + this.courseNumber + " " +
         this.building + " " + this.room;
-    }
+    },
+    this.colorClass = "ColorRed";
   }
 
   var outputArr = [];
@@ -110,17 +111,16 @@ function showByRoom(newArray){
       newArray[i].prefix,
       newArray[i].courseNumber, 
       newArray[i].meetingTimes[0].building,
-      newArray[i].meetingTimes[0].room));
+      newArray[i].meetingTimes[0].room),
+      "ColorRed");
   }
   console.log(outputArr);
 
   $.map(outputArr, function(value, i){
     if(i % 2 == 0){
-      outputArr.colorClass = "ColorRed";
+      outputArr[i].colorClass = "ColorBlue";
     }
-    else{
-      outputArr.colorClass = "ColorBlue";
-    }
+   
   });
 
   var str = "<ul>";
