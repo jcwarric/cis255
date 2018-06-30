@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+
+		<h3>Farenheit to Celsius</h3>
+		temperature in Fahrenheit:
+		<input ng-model="degFar"/>
+		<br>
+		<button type="button" ng-click="calculateCelsius()">convert to Celsius</button>
+		
+		{{ calculation}}
+
+		<br>
+		<br>
+		<h3> Quadratic Formula </h3>
+		a: <input ng-model="Sqa"/>
+		b: <input ng-model="Sqb"/>
+		c: <input ng-model="Sqc"/>
+		<p> The solution for the equation {{ Sqa }}x^2 + {{ Sqb }}x + {{ Sqc }} = 0 is
+			{{firstQuadratic()}} and {{secondQuadratic()}} </p>
+
+		<h3>Cubic Formula</h3>
+		a: <input ng-model="a"/>
+		b: <input ng-model="b"/>
+		c: <input ng-model="c"/>
+		d: <input ng-model="d"/>
+		<br>
+		<p>The solution to the equation is
+		{{ getCubicRoots() }}</p>
+
+	</div>
+
+
+	<script>
+		var app = angular.module("myApp", []);
+		app.controller("myCtrl", function($scope) {
+			$scope.Sqa = 1;
+			$scope.Sqb = 3;
+			$scope.Sqc = -4;
+
+			$scope.degFar = 32;
+			$scope.calculation = 0;
+
+			$scope.a = 2;
+			$scope.b = -4;
+			$scope.c = -22;
+			$scope.d = 24;
+
+			$scope.root1 = 0;
+			$scope.root2 = 0;
+			$scope.root3 = 0;
+
+			$scope.calculateCelsius = function(){
+				$scope.calculation = ($scope.degFar - 32) * 5 / 9;
+			} ;
+
+			$scope.firstQuadratic = function(){
+				return (-1 * $scope.Sqb + Math.sqrt(Math.pow($scope.Sqb, 2) - (4 * $scope.Sqa * $scope.Sqc))) / (2 * $scope.Sqa);
+			};
+			$scope.secondQuadratic = function(){
+				return (-1 * $scope.Sqb - Math.sqrt(Math.pow($scope.Sqb, 2) - (4 * $scope.Sqa * $scope.Sqc))) / (2 * $scope.Sqa);
+			};
+
+			$scope.getCubicRoots = function(){
+				var answerString = "";
+
+				var f = ((3 * $scope.c / $scope.a)
+					- ( Math.pow($scope.b, 2) / Math.pow($scope.a, 2)) ) / 3;
+
+				var g = ((2 * Math.pow($scope.b, 3)/ Math.pow($scope.a, 3))
+					- (9 * $scope.b * $scope.c / Math.pow($scope.a, 2))
+					+ (27 * $scope.d / $scope.a) )/ 27;
+
+				var h = (Math.pow(g, 2) / 4) + (Math.pow(f, 3)/27);
+
+				//first method: if h > 0, only 1 root is real
+				if(h > 0){
+					var r = -(g/2) + Math.sqrt(h);
+					var s = Math.cbrt(r);
+					var t = -1 * (g/2) - Math.sqrt(h);
+					var u = Math.cbrt(t);
+					//compute the real root
+					$scope.root1 = (s + u) - ($scope.b/(3*$scope.a));
+
+					//the other 2 roots have imaginary components
+					var imaginaryPart = (s-u) * Math.sqrt(3)/2;
+					$scope.root2 = -(s + u ) / 2 - ($scope.b / ( 3 * $scope.a ) );
+					$scope.root3 = -(s + u ) / 2 - ($scope.b / ( 3 * $scope.a ) );
+
+					answerString += ($scope.root1.toString() + ", " 
+					+ $scope.root2.toString() + " + i * " + imaginaryPart
+					+ ", and " + $scope.root3.toString() + " - i * " + imaginaryPart);
+					
+				}
+
+				//second method: if f, g, and h are all 0, then all 3
+				//roots are real and equal
+				else if ( (h == 0) && (f == 0) && (g == 0)){
+					var root = Math.cbrt($scope.d / $scope.a) * -1;
+					$scope.root1 = root;
+					$scope.root2 = root;
+					$scope.root3 = root;
+					answerString += $scope.root1.toString() + ", "
+						+ $scope.root2.toString() + ", and " 
+						+ $scope.root3.toString();
+				}
+				//third method: h <= 0 means that all 3 roots are real
+				else{
+					var i = Math.sqrt(Math.pow(g,2)/4 - h);
+					var j = Math.cbrt(i);
+					var k = Math.acos(-1 * ( g / (2 * i)));
+					var l = j * -1;
+					var m = Math.cos(k/3);
+					var n = Math.sqrt(3) * Math.sin(k/3);
+					var p = ($scope.b / (3 * $scope.a)) * -1;
+
+					$scope.root1 = 2 * j * Math.cos(k/3) 
+						- ($scope.b / (3 * $scope.a));
+
+					$scope.root2 = l * (m + n) + p;
+					
+					$scope.root3 = l * (m - n) + p;
+					
+					answerString += $scope.root1.toString() + ", "
+						+ $scope.root2.toString() + ", and " 
+						+ $scope.root3.toString();
+				}
+				return answerString;
+
+			};
+
+		});
+
+	</script>
+
+</body>
+</html>
