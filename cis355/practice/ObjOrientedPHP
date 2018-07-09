@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+	<?php
+		//class
+		class phpClass{
+			var $var1 = 1;
+			var $var2 = "constant string";
+			function myfunc(){
+				echo "var1: " . $var1 . " , var2: " . $var2;
+			}
+		}
+
+		class Books {
+			//member variables
+			var $price;
+			var $title;
+
+			// tried a no-arg ctor, can't overload?
+			// function __construct(){
+			// 	$this->title = "untitled";
+			// 	$this->price = 0.00;
+			// }
+
+			//constructor function
+			//special syntax - use __construct();
+			//** note: 2 underscores **
+			function __construct($par1, $par2) {
+				$this->title = $par1;
+				$this->price = $par2;
+			}
+
+			//dtor
+			function __destruct() {
+
+			}
+
+			//member functions
+			function setPrice($par) {
+				$this->price = $par;
+			}
+			//notice: don't need '$' on this->variable name maybe b/c
+			//already declared $ with $this
+			// $ (this->price)
+			function getPrice() {
+				echo $this->price . "<br/>";
+			}
+
+			function setTitle($par){
+				$this->title = $par;
+			}
+
+			function getTitle(){
+				echo $this->title . "<br/>";
+			}
+
+		}
+
+		//call with pointer -> syntax
+		$handmaidsTale = new Books ("Handmaid's Tale", 10.0);
+		$handmaidsTale->setTitle("Handmaid's Tale");
+		$handmaidsTale->setPrice("10.00");
+		$handmaidsTale->getTitle();
+		$handmaidsTale->getPrice();
+
+		//Books obj using ctor
+		$theHobbit = new Books("The Hobbit", "12.0");
+		$theHobbit->getTitle();
+		$theHobbit->getPrice();
+
+		//inheritance
+		class Novel extends Books{
+			var $publisher;
+
+			function setPublisher($par){
+				$this->publisher = $par;
+			}
+
+			function getPublisher(){
+				echo $this->publisher . "<br/>";
+			}
+
+			//child functions override parent functions
+			function getPrice(){
+				echo "price: " . $this->price . "<br/>";
+			}
+
+			function getTitle(){
+				echo "title: " . $this->title . "<br/>";
+			}
+
+		}
+
+		$ClockworkOrange = new Novel("ClockworkOrange", 14.90);
+		$ClockworkOrange->setPublisher("Penguin Publishing");
+		$ClockworkOrange->getTitle();
+		$ClockworkOrange->getPrice();
+		$ClockworkOrange->getPublisher();
+		//member vars by default are public
+		echo $ClockworkOrange->title . "<br>";
+
+		//interface
+		//provice common function names to implementers
+		interface Mail {
+			public function sendMail();
+		}
+		class Report implements Mail {
+			//sendMail must be defined in Report
+			function sendMail(){
+				echo "send mail" . "<br>";
+			}
+		}
+
+		$report = new Report;
+		$report -> sendMail();
+
+		//class
+		class foo{
+			public static $my_static = 'foo';
+			public static $numCallsToStaticValue = 0;
+
+			public function staticValue(){
+				//can't use this b/c not an object
+				self::$numCallsToStaticValue++;
+				return self::$numCallsToStaticValue;
+			}
+		}
+
+		print Foo::$my_static . "\n";
+		$foo = new Foo();
+		print $foo->staticValue() . "\n" . "<br/>";
+		print $foo->staticValue() . "\n" . "<br/>";
+
+		for($i = 0; $i < 10; $i++){
+			$foo->staticValue();
+		}
+		print "num times staticValue() has been called: " . $foo->staticValue() . "\n" . "<br>";
+
+	class Name {
+	   var $_firstName;
+	   var $_lastName;
+	   
+	   function Name($first_name, $last_name) {
+	   		echo "entering Name ctor </br>";
+	      $this->_firstName = $first_name;
+	      $this->_lastName = $last_name;
+	      echo "exiting Name ctor </br>";
+	   }
+	   
+	   function toString() {
+	      return($this->_lastName .", " .$this->_firstName);
+	   }
+	}
+
+	//subclass of Name
+	class NameSub1 extends Name {
+	   var $_middleInitial;
+	   
+	   function NameSub1($first_name, $middle_initial, $last_name) {
+	   		echo "entering NameSub1 ctor <br>";
+	      Name::Name($first_name, $last_name);
+	      $this->_middleInitial = $middle_initial;
+	      echo "exiting NameSub1 ctor <br>";
+	   }
+	   
+	   function toString() {
+	      return(Name::toString() . " " . $this->_middleInitial);
+	   }
+	}
+
+	$subName = new NameSub1("Lily", "S", "Evans");
+	echo $subName->toString() . "<br>";
+
+	?>
+
+<h2> Misc Notes </h2>
+<p>
+	<ul>
+		<li>don't use "var" to declare variables in php - just declare using $
+		</li>
+		<li>You can't overload PHP functions. Function signatures are based only on names - don't include arg lists
+		</li>
+		<li>defining dtor and ctor: need to prefix fn name with 2 underscores
+			<br>
+			function __construct(args){...} <br>
+			function __destruct(){...}<br>
+		</li>
+		<li>default member variable visibility = public 
+			<br> public: can be seen from outside class, inside class, from inner class<br>
+			protected: can be seen by child class, not outside class
+			private: can only be used within class itself, not from child classes.
+		</li>
+		<li>PHP supports interfaces (good way to ensure that a function is implemented in a class). 
+		</li>
+		<li>constants - use "const", immutable</li>
+		<li>abstract classes cannot be instantiated, only inherited. declare using abstract: "abstract class MyAbstractClass {...}" <br>
+		all abstract methods in parent must be defined by child</li>
+		<li>static keyword can make fn/variable accessible without needing instance of class</li>
+		<li>final method cannot be overridden in child class</li>
+		<li>can use ctor chaining by calling parent's ctor</li>
+	</ul>
+</p>
+</body>
+
+</html>
