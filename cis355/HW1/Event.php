@@ -37,6 +37,7 @@
                     </p>
                     <p>
                         <a href='eventMain.php?fun=1' class='btn btn-success'>Create</a>
+			<a href='https://github.com/jcwarric/cis255/tree/master/cis355/HW1' class='btn btn-success'>Github</a>
                     </p>
                     <div class='row'>
                         <table class='table table-striped table-bordered'>
