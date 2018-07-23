@@ -1,6 +1,7 @@
 <?php
 	include_once "database.php";
-
+	//Event class handles CRUD(create, modify, delete, and update) actions
+	//for the events table in the database.
 	class Event {
 
 		public $id;
@@ -18,6 +19,7 @@
 
 		//lists the records in the table
 		function list_records() {
+		
         echo "
         <html>
             <head>
@@ -37,7 +39,8 @@
                     </p>
                     <p>
                         <a href='eventMain.php?fun=1' class='btn btn-success'>Create</a>
-			<a href='https://github.com/jcwarric/cis255/tree/master/cis355/HW1' class='btn btn-success'>Github</a>
+			<a href='https://github.com/jcwarric/cis255/tree/master/cis355/HW1' class='btn btn-info'>Github</a>
+                        <a href='customerMain.php' class='btn btn-secondary'>Customers</a>
                     </p>
                     <div class='row'>
                         <table class='table table-striped table-bordered'>
@@ -52,6 +55,7 @@
                             </thead>
                             <tbody>
                     ";
+	//display the rows of the events table
         $pdo = Database::connect();
         $sql = "SELECT * FROM events ORDER BY id DESC";
         foreach ($pdo->query($sql) as $row) {
@@ -118,6 +122,7 @@
                     ";
 		}
 
+		//inserts the new record into the database using the values from the form generated in create_record()
 		function insert_record () {
         // validate input
         $valid = true;
@@ -157,6 +162,7 @@
         }
     }
 
+		//control group - for inputing date, time, location, and description fields
 		function control_group ($label, $labelError, $val) {
 		  echo "<div class='control-group";
 		  echo !empty($labelError) ? 'error' : '';
@@ -176,9 +182,8 @@
 	  }
 
 
-	  //read an event
+	  //read an event (display an event's information on its own page)
 	  function read(){
-
 	  	echo "<html>";
 	  	//get the id of the event
 	  	$id = null;
@@ -260,7 +265,7 @@
 
 	  }
 
-	  //delete event
+	  //form to ask the user if they are sure that they want to delete the event
 	  function delete(){
 	  	$id = 0;
      
@@ -297,6 +302,7 @@
 				</html>";
 	  }
 
+		//delete the record from the database
 	  function delete_record(){
 	  	$id = 0;
      
@@ -319,6 +325,7 @@
 	    }
 	  }
 
+		//form to update an event
 	  function update(){
 	  	$id = 0;
 	    if ( !empty($_GET['id'])) {
@@ -352,7 +359,7 @@
 		</html>";
 
 	  }
-
+		//update an event in the database
 	  function update_record(){
 	  	 $id = null;
 	    if ( !empty($_GET['id'])) {
@@ -398,7 +405,7 @@
 	            $this->descriptionError = 'Please enter a description';
 	            $valid = false;
 	        }
-	        var_dump($valid);
+	        
 	        // update data
 	        if ($valid) {
 	            $pdo = Database::connect();
@@ -410,7 +417,7 @@
 	            header("Location: eventMain.php");
 	        }
 	    	 else {
-			    	echo "update";
+			    	
 						header("Location: eventMain.php?fun=3&id=" . $id);
 			    }
 	    }
