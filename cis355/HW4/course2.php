@@ -31,7 +31,10 @@ function main() {
 
     // open html body section
     echo '<body>';
-
+    // display button for course search
+    echo '<a href="coursesearch.php" class="btn btn-primary">Search</a>';
+    echo '<a href="https://github.com/jcwarric/cis255/tree/master/cis355/HW4" class="btn btn-info">GitHub</a>';
+  
     // in html body section, if gpcorser's schedule, then print gpcorser's heading, else print general CS/CIS/CSIS heading
     if (!strcmp($_GET['instructor'], 'gpcorser')) {
         echo '<h1 align="center">George Corser, PhD</h1>';
@@ -100,10 +103,7 @@ function main() {
 
     // display the entry form for next search
     //printForm(); 
-    // display button for course search
-    echo '<a href="coursesearch.php" class="btn btn-primary">Search</a>';
-    echo '<a href="https://github.com/jcwarric/cis255/tree/master/cis355/HW4" class="btn btn-info">GitHub</a>';
-
+    
     // close html body section
     echo '</body>';
     echo '</html>';
