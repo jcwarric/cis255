@@ -102,6 +102,7 @@ function main() {
     //printForm(); 
     // display button for course search
     echo '<a href="coursesearch.php" class="btn btn-primary">Search</a>';
+    echo '<a href="https://github.com/jcwarric/cis255/tree/master/cis355/HW4" class="btn btn-info">GitHub</a>';
 
     // close html body section
     echo '</body>';
